@@ -1,0 +1,58 @@
+package me.caleb.tasks;
+
+import com.google.gson.Gson;
+import me.caleb.data.Datum;
+import me.caleb.data.Submission;
+import me.caleb.hi;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.List;
+
+public class RedditPostFetcher extends Thread {
+    @Override
+    public void run() {
+        HttpClient client = HttpClient.newHttpClient();
+        //state request params
+        //uri uniform resource identifier basically just providing link to resource
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://api.pushshift.io/reddit/search/submission?subreddit=wallstreetbets&limit=300")).build();
+        //num_crossposts     Number of times Submission has been crossposted
+        //selftext
+        //
+
+
+
+        //building response and inside of for loop sorting through data to be used
+        try {
+            HttpResponse<String> response =
+                    client.send(request, HttpResponse.BodyHandlers.ofString());
+            //just collecting my json
+            Submission submissions = new Gson().fromJson(response.body(), Submission.class);
+
+            for (Datum d : submissions.getData()) {
+                if (!containsPost(hi.getPostList(), d.getId())) {
+                    PostSelector check = new PostSelector();
+                    if(check.checkPost(d)){
+                        hi.getPostList().add(d);
+                        System.out.println(d.getTitle());
+                    }
+                }
+            }
+
+//                    System.out.println(hi.postList.size());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //searched in google if collection contains object java
+    //looking through all of our posts id's to see if it is already in our list returns boolean value
+    public boolean containsPost(final List<Datum> posts, final String postId) {
+        return posts.stream().anyMatch(post -> post.getId().equals(postId));
+    }
+}
