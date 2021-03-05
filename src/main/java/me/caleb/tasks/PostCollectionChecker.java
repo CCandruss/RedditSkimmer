@@ -1,19 +1,15 @@
 package me.caleb.tasks;
 
 import me.caleb.data.Datum;
-import me.caleb.hi;
+import me.caleb.App;
 
 //just printing out message on timer of what we have so far
 //need to add logic to differentiate our valued posts
 public class PostCollectionChecker extends Thread {
-    String postTitle;
-    String id ;
-    int totalAwardsReceived;
-    int numComments;
     public void run() {
 
-        System.out.println("Number of unique posts I'm tracking :: " + hi.getPostList().size());
-        for(Datum post: hi.getPostList()){
+        System.out.println("Number of unique posts I'm tracking :: " + App.getPostList().size());
+        for(Datum post: App.getPostList()){
             System.out.println(post.getTitle());
         }
 

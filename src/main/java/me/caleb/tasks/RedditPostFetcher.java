@@ -3,16 +3,20 @@ package me.caleb.tasks;
 import com.google.gson.Gson;
 import me.caleb.data.Datum;
 import me.caleb.data.Submission;
-import me.caleb.hi;
+import me.caleb.App;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 public class RedditPostFetcher extends Thread {
+
     @Override
     public void run() {
         HttpClient client = HttpClient.newHttpClient();
@@ -24,31 +28,35 @@ public class RedditPostFetcher extends Thread {
         //
 
 
-
         //building response and inside of for loop sorting through data to be used
         try {
+
             HttpResponse<String> response =
                     client.send(request, HttpResponse.BodyHandlers.ofString());
             //just collecting my json
             Submission submissions = new Gson().fromJson(response.body(), Submission.class);
 
             for (Datum d : submissions.getData()) {
-                if (!containsPost(hi.getPostList(), d.getId())) {
+                if (!containsPost(App.getPostList(), d.getId())) {
                     PostSelector check = new PostSelector();
                     if(check.checkPost(d)){
-                        hi.getPostList().add(d);
+                        App.getPostList().add(d);
                         System.out.println(d.getTitle());
+                        Files.writeString(Path.of("data/saved_posts.json"), new Gson().toJson(App.getPostList()));
                     }
                 }
+
             }
 
-//                    System.out.println(hi.postList.size());
+//                    System.out.println(App.postList.size());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
+
+
 
     //searched in google if collection contains object java
     //looking through all of our posts id's to see if it is already in our list returns boolean value
