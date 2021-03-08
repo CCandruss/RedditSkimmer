@@ -9,9 +9,10 @@ public class PostCollectionChecker extends Thread {
     public void run() {
 
         System.out.println("Number of unique posts I'm tracking :: " + App.getPostList().size());
-        for(Datum post: App.getPostList()){
-            System.out.println(post.getTitle());
-        }
+        new PostSelector().filterForRelevance();
+//        for(Datum post: App.getPostList()){
+//            System.out.println(post.getTitle());
+//        }
 
     }
 }

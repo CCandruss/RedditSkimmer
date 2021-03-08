@@ -604,7 +604,7 @@ public class Datum implements Serializable
         return retrievedOn;
     }
 
-    public void setRetrievedOn(Integer retrievedOn) {
+    public void setRetrievedOn(int retrievedOn) {
         this.retrievedOn = retrievedOn;
     }
 

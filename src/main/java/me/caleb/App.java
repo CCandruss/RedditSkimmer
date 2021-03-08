@@ -59,8 +59,8 @@ public class App {
             String actual = Files.readString(Path.of("data/saved_posts.json"));
             Type postListType = new TypeToken<ArrayList<Datum>>(){}.getType();
             postList = new Gson().fromJson(actual, postListType );
-            System.out.println(actual);
         }
+
 
         final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(100);
 

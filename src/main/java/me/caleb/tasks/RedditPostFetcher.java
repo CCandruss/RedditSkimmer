@@ -22,7 +22,7 @@ public class RedditPostFetcher extends Thread {
         HttpClient client = HttpClient.newHttpClient();
         //state request params
         //uri uniform resource identifier basically just providing link to resource
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://api.pushshift.io/reddit/search/submission?subreddit=wallstreetbets&limit=300")).build();
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://api.pushshift.io/reddit/search/submission?subreddit=wallstreetbets&limit=100")).build();
         //num_crossposts     Number of times Submission has been crossposted
         //selftext
         //
@@ -41,7 +41,9 @@ public class RedditPostFetcher extends Thread {
                     PostSelector check = new PostSelector();
                     if(check.checkPost(d)){
                         App.getPostList().add(d);
-                        System.out.println(d.getTitle());
+                        long epochNow = System.currentTimeMillis();
+                        System.out.println("I did it!!");
+
                         Files.writeString(Path.of("data/saved_posts.json"), new Gson().toJson(App.getPostList()));
                     }
                 }
