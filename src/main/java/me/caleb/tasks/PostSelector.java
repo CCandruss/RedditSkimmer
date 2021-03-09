@@ -18,6 +18,7 @@ public class PostSelector {
     int numComments;
     Double upVoteRatio;
     long retrievedOn;
+    int timestamp;
 
 
     public Boolean checkPost(Datum post){
@@ -44,16 +45,36 @@ public class PostSelector {
             numComments = d.getNumComments();
             upVoteRatio = d.getUpvoteRatio();
             retrievedOn = d.getRetrievedOn();
-            long epochNow = System.currentTimeMillis();
-            epochNow = removeLastNDigits(epochNow, 3);
+            if(d.getPostTime() != 0){
+                timestamp = d.getPostTime();
+                System.out.println((timestamp + postTitle));
+                System.out.println((id));
 
-
-            System.out.println(retrievedOn);
-            System.out.println(epochNow + "now");
-
-            if(retrievedOn > (epochNow + 14400000)){
-                System.out.println(d.getTitle() + "pay attention to me");
             }
+//            long epochNow = System.currentTimeMillis();
+//            epochNow = removeLastNDigits(epochNow, 3);
+
+//            System.out.println(epochNow  - (14400*3) + "math");
+
+//            if(retrievedOn <= (epochNow - (14400*8)) && retrievedOn >= (epochNow - (14400*6))){
+//                System.out.println(d.getTitle() + "    timestamp: 24-32 hours");
+//            }
+//            if(retrievedOn < (epochNow - (14400*2)) && retrievedOn >= (epochNow - (14400))){
+//                System.out.println(d.getTitle() + "    timestamp: 8 hours or more");
+//            }
+//            if(retrievedOn < (epochNow - (14400*3)) && retrievedOn >= (epochNow - (14400*2))){
+//                System.out.println(d.getTitle() + "    timestamp: 12 hours or more");
+//            }
+//            if(retrievedOn < (epochNow - (14400*4)) && retrievedOn >= (epochNow - (14400*3))){
+//                System.out.println(d.getTitle() + "    timestamp: 16 hours or more");
+//            }
+//            if(retrievedOn <= (epochNow - (14400*5)) && retrievedOn >= (epochNow - (14400*4))){
+//                System.out.println(d.getTitle() + "    timestamp: 20 hours or more");
+//            }
+//            if(retrievedOn <= (epochNow - (14400*6))){
+//                System.out.println(d.getTitle() + "    timestamp: 24 hours or more");
+//            }
+
         }
     }
 

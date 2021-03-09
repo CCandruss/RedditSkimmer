@@ -11,8 +11,8 @@ import me.caleb.data.Submission;
 import me.caleb.tasks.RedditPostFetcher;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.json.JSONArray;
-import org.json.JSONObject;
+//import org.json.JSONArray;
+//import org.json.JSONObject;
 
 
 import java.awt.event.ActionEvent;
