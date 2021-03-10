@@ -143,7 +143,7 @@ public class Datum implements Serializable
     private String postHint;
     @SerializedName("post_time")
     @Expose
-    private Integer postTime = 0;
+    private Long postTime;
     @SerializedName("preview")
     @Expose
     private Preview preview;
@@ -579,11 +579,11 @@ public class Datum implements Serializable
         this.postHint = postHint;
     }
 
-    public Integer getPostTime() {
+    public Long getPostTime() {
         return postTime;
     }
 
-    public void setPostTime(Integer postTime) {
+    public void setPostTime(Long postTime) {
         this.postTime = postTime;
     }
 
