@@ -28,7 +28,7 @@ public class PostSelector {
         totalAwardsReceived = post.getTotalAwardsReceived();
         numComments = post.getNumComments();
 
-        if(postText != null && !postText.equalsIgnoreCase("[removed]")&& !postText.equalsIgnoreCase("[deleted]") && postText.length() > 10){
+        if(postText != null && !postText.equalsIgnoreCase("[removed]")&& !postText.equalsIgnoreCase("[deleted]") && postText.length() > 100){
             return true;
         } else {
             return false;
@@ -48,9 +48,9 @@ public class PostSelector {
             if(d.getPostTime() != 0){
                 timestamp = d.getPostTime();
                 long epochNow = System.currentTimeMillis();
-                long timeGap = (long) (epochNow - timestamp);
-                if(timeGap < 14537454) {
-                    System.out.println(d.getTitle() + timeGap);
+                long timeGap = (epochNow - timestamp);
+                if(timeGap < 987879) {
+                    System.out.println(postTitle +epochNow + "  " + timestamp + "   " + timeGap);
                 }
 //                System.out.println(postTitle + "    " + timeGap);
 //                if(timeGap < 14400){

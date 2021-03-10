@@ -19,7 +19,7 @@ public class RedditPostFetcher extends Thread {
 
     @Override
     public void run() {
-        long epochNow = System.currentTimeMillis();
+        long epochNow;
         HttpClient client = HttpClient.newHttpClient();
         //state request params
         //uri uniform resource identifier basically just providing link to resource
@@ -41,6 +41,7 @@ public class RedditPostFetcher extends Thread {
                 if (!containsPost(App.getPostList(), d.getId())) {
                     PostSelector check = new PostSelector();
                     if(check.checkPost(d)){
+                        epochNow = System.currentTimeMillis();
                         App.getPostList().add(d);
                         d.setPostTime(epochNow);
                         Files.writeString(Path.of("data/saved_posts.json"), new Gson().toJson(App.getPostList()));
