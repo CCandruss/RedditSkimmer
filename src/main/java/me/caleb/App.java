@@ -64,8 +64,8 @@ public class App {
 
         final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(100);
 
-        ScheduledFuture retrievePosts = scheduler.scheduleAtFixedRate(
-                new RedditPostFetcher(), 1, 2, TimeUnit.SECONDS);
+//        ScheduledFuture retrievePosts = scheduler.scheduleAtFixedRate(
+//                new RedditPostFetcher(), 1, 2, TimeUnit.SECONDS);
 
         ScheduledFuture checkPostCollectionStatus = scheduler.scheduleAtFixedRate(
                 new PostCollectionChecker(), 1, 20, TimeUnit.SECONDS);

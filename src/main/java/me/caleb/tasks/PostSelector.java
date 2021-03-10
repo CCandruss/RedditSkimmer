@@ -47,33 +47,43 @@ public class PostSelector {
             retrievedOn = d.getRetrievedOn();
             if(d.getPostTime() != 0){
                 timestamp = d.getPostTime();
-                System.out.println((timestamp + postTitle));
-                System.out.println((id));
+                long epochNow = System.currentTimeMillis();
+                epochNow = removeLastNDigits(epochNow, 3);
+                int timeGap = (int) (epochNow - timestamp);
+//                System.out.println(postTitle + "    " + timeGap);
+                if(timeGap < 14400){
+                    System.out.println("just a wee babe");
+                }
+                if(timeGap < 28800 && timeGap > 14400){
+                    System.out.println(d.getTitle() + "    timestamp: 4-8hours");
+                }
+                if(timeGap < 43200 && timeGap >28800){
+                    System.out.println(d.getTitle() + "    timestamp: 8-12" );
+                }
+                if(timeGap < 57600 && timeGap >43200){
+                    System.out.println(d.getTitle() + "    timestamp: 12-16" );
+                }
+                if(timeGap < 72000 && timeGap >57600){
+                    System.out.println(d.getTitle() + "    timestamp: 16-20" );
+                }
+                if(timeGap < 86400 && timeGap >72000){
+                    System.out.println(d.getTitle() + "    timestamp: 20-24" );
+                }
 
+                //next move is figure out gaps for each hour marker I want but for now fuck all dat you feel me....
+//                if(timestamp < (epochNow - (14400*4)) && timestamp >= (epochNow - (14400*3))){
+//                    System.out.println(d.getTitle() + "    timestamp: 12-16 hours");
+//                }
+//                if(timestamp < (epochNow - (14400*5)) && timestamp >= (epochNow - (14400*4))){
+//                    System.out.println(d.getTitle() + "    timestamp: 16-20 hours");
+//                }
+//                if(timestamp <= (epochNow - (14400*6)) && timestamp >= (epochNow - (14400*7))){
+//                    System.out.println(d.getTitle() + "    timestamp: 20-24 hours");
+//                }
+//                if(timestamp < (epochNow - (14400*7))){
+//                    System.out.println(d.getTitle() + "    timestamp: 24 hours or more");
+//                }
             }
-//            long epochNow = System.currentTimeMillis();
-//            epochNow = removeLastNDigits(epochNow, 3);
-
-//            System.out.println(epochNow  - (14400*3) + "math");
-
-//            if(retrievedOn <= (epochNow - (14400*8)) && retrievedOn >= (epochNow - (14400*6))){
-//                System.out.println(d.getTitle() + "    timestamp: 24-32 hours");
-//            }
-//            if(retrievedOn < (epochNow - (14400*2)) && retrievedOn >= (epochNow - (14400))){
-//                System.out.println(d.getTitle() + "    timestamp: 8 hours or more");
-//            }
-//            if(retrievedOn < (epochNow - (14400*3)) && retrievedOn >= (epochNow - (14400*2))){
-//                System.out.println(d.getTitle() + "    timestamp: 12 hours or more");
-//            }
-//            if(retrievedOn < (epochNow - (14400*4)) && retrievedOn >= (epochNow - (14400*3))){
-//                System.out.println(d.getTitle() + "    timestamp: 16 hours or more");
-//            }
-//            if(retrievedOn <= (epochNow - (14400*5)) && retrievedOn >= (epochNow - (14400*4))){
-//                System.out.println(d.getTitle() + "    timestamp: 20 hours or more");
-//            }
-//            if(retrievedOn <= (epochNow - (14400*6))){
-//                System.out.println(d.getTitle() + "    timestamp: 24 hours or more");
-//            }
 
         }
     }
