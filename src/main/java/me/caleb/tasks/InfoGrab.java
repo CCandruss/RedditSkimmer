@@ -17,34 +17,29 @@ import java.nio.file.Path;
 
 //class for updating Datum info to be reevaluated
 public class InfoGrab {
-    public void getUpdate(int postId) {
-        HttpClient client = HttpClient.newHttpClient();
+    public void getUpdate(String postId) {
+        HttpClient client2 = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://api.pushshift.io/reddit/submission/search/?ids="+postId)).build();
         //building response and inside of for loop sorting through data to be used
         try {
 
             HttpResponse<String> response =
-                    client.send(request, HttpResponse.BodyHandlers.ofString());
+                    client2.send(request, HttpResponse.BodyHandlers.ofString());
             //just collecting my json
             Submission submissions = new Gson().fromJson(response.body(), Submission.class);
 
             for(Datum d: submissions.getData()){
-                if(new RedditPostFetcher().containsPost(App.getPostList(), d.getId())){
-                    System.out.println(d.getNumComments()+ "  " +d.getRetrievedOn());
-                    App.getPostList().set(App.getPostList().indexOf(d),d);
-                    System.out.println(d.getNumComments()+ "  " +d.getRetrievedOn());
-                }
+                System.out.println(d.getTitle());
+//                if(new RedditPostFetcher().containsPost(App.getPostList(), d.getId())){
+//                    System.out.println(d.getTitle() + "  " + d.getNumComments()+ "  " +d.getRetrievedOn());
+////                    App.getPostList().set(App.getPostList().indexOf(d),d);
+//                }
             }
-
-
 //                    System.out.println(App.postList.size());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }
-
 }
 //
 //           for (Datum d : submissions.getData()) {

@@ -2,9 +2,9 @@ package me.caleb.data.averages;
 
 public class NumComments {
     int numComments;
-    int postId;
+    String postId;
 
-    public NumComments(int comments, int id){
+    public NumComments(int comments, String id){
         numComments = comments;
         postId = id;
     }

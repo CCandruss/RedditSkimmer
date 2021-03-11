@@ -68,7 +68,7 @@ public class App {
                 new RedditPostFetcher(), 1, 2, TimeUnit.SECONDS);
 
         ScheduledFuture checkPostCollectionStatus = scheduler.scheduleAtFixedRate(
-                new PostCollectionChecker(), 1, 20, TimeUnit.SECONDS);
+                new PostCollectionChecker(), 2, 10, TimeUnit.SECONDS);
 
     }
 

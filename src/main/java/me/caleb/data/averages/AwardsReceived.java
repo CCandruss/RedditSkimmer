@@ -2,9 +2,9 @@ package me.caleb.data.averages;
 
 public class AwardsReceived {
     int postAwards;
-    int postId;
+    String postId;
 
-    public AwardsReceived(int awards, int id){
+    public AwardsReceived(int awards, String id){
         postAwards = awards;
         postId = id;
     }

@@ -1,10 +1,10 @@
 package me.caleb.data.averages;
 
 public class LikeRatios {
-    int likeRate;
-    int postId;
+    Double likeRate;
+   String postId;
 
-    public LikeRatios(int likeRatio, int id){
+    public LikeRatios(Double likeRatio, String id){
         likeRate = likeRatio;
         postId = id;
     }
